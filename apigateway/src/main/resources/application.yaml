@@ -1,0 +1,47 @@
+server:
+  port: 8400
+  
+logging:
+  level:
+    org.springframework.web: debug
+
+management:
+ tracing:
+  sampling:
+   probability: 1.0
+   
+eureka:
+ client:
+  serviceUrl:
+   defaultZone: http://localhost:8761/eureka/
+   
+spring:
+ application:
+  name: apigateway
+ config: 
+  import: "optional:configserver:http://localhost:8200" 
+ cloud:
+  gateway:
+   routes:
+    - id: productservice
+      uri: lb://productservice
+      predicates:
+       - Path=/productservice/**
+      filters : 
+       - AuthenticationFilter
+       
+    - id: personservice
+      uri: lb://personservice
+      predicates:
+       - Path=/personservice/**
+      filters : 
+       - AuthenticationFilter
+      
+    - id: authenticationservice
+      uri: lb://authenticationservice
+      predicates:
+       - Path=/auth/**
+
+   
+   
+   
