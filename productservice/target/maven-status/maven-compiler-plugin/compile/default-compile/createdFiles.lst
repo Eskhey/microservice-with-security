@@ -1,0 +1,7 @@
+com/microservice/productservice/ProductService.class
+com/microservice/productservice/ProductResponse.class
+com/microservice/productservice/Product.class
+com/microservice/productservice/ProductRepository.class
+com/microservice/productservice/ProductserviceApplication.class
+com/microservice/productservice/ProductRequest.class
+com/microservice/productservice/ProductController.class
